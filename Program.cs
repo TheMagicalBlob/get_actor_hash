@@ -61,7 +61,7 @@ namespace t2hash
                     pastConversions[pastConversions.Count - 1] += $"{input[i]}{input[i+1]}";
                 }
                 
-                Array.ForEach(pastConversions.ToArray(), str => Console.WriteLine(str + "\n"));
+                Array.ForEach(pastConversions.ToArray(), str => Console.WriteLine($"{str} / {input}\n"));
             }
         }
     }
