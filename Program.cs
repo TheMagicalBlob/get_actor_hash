@@ -60,7 +60,7 @@ namespace t2hash
                 {
                     pastConversions[pastConversions.Count - 1] += $"{input[i]}{input[i+1]}";
                 }
-                pastConversions[pastConversions.Count - 1] +=  $"/ {input}\n";
+                pastConversions[pastConversions.Count - 1] +=  $" / {input}\n";
                 
                 Array.ForEach(pastConversions.ToArray(), str => Console.WriteLine(str));
             }
