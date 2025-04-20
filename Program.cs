@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.SqlServer.Server;
 
 namespace t2hash
 {
@@ -47,21 +48,20 @@ namespace t2hash
 
                 // Hash input string
                 hash = offset_basis;
-                foreach (char character in input)
+                foreach (byte character in input)
                 {
                     hash ^= character;
                     hash *= prime;
                 }
 
-
-                input = hash.ToString("X");
+                input = hash.ToString("X").PadLeft(16, '0');
 
                 for (int i = input.Length - 2; i >= 0; i-=2)
                 {
                     pastConversions[pastConversions.Count - 1] += $"{input[i]}{input[i+1]}";
                 }
-                pastConversions[pastConversions.Count - 1] +=  $" / {input}\n";
-                
+                pastConversions[pastConversions.Count - 1] +=  $"  |  {input}\n";
+
                 Array.ForEach(pastConversions.ToArray(), str => Console.WriteLine(str));
             }
         }
