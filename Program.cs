@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.SqlServer.Server;
 
-namespace t2hash
+namespace get_actor_hash
 {
     class Program
     {
         static void Main(string[] args)
         {
             var pastConversions = new List<string>();
-            var input = string.Empty;
-            ulong hash;
+            string input;
 
 
             while (true)
@@ -23,6 +21,7 @@ namespace t2hash
                 }
                 else {
                     do {
+                        Console.Clear();
                         Console.Write("Input: ");
                         input = Console.ReadLine();
                     }
@@ -30,7 +29,7 @@ namespace t2hash
                 }
 
                 Console.Clear();      // Clear the screen
-                input = input.Trim(); // Remove any accidental whitespace wrapping the input
+                input = input?.Trim() ?? string.Empty; // Remove any accidental whitespace wrapping the input
 
 
                 // Check for clear command in input string
@@ -45,7 +44,7 @@ namespace t2hash
 
 
                 // Hash input string
-                hash = 14695981039346656037;
+                ulong hash = 14695981039346656037;
                 ulong prime = 1099511628211;
                 foreach (char character in input)
                 {
@@ -67,7 +66,10 @@ namespace t2hash
 
 
                 // Ouptut all the hashed strings
-                Array.ForEach(pastConversions.ToArray(), str => Console.WriteLine(str));
+                foreach (var str in pastConversions)
+                {
+                    Console.WriteLine(str);
+                }
             }
         }
     }
